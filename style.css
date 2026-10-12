@@ -249,3 +249,58 @@ nav ul{display:flex;align-items:center;gap:clamp(10px,1.5vw,24px)}
   color: #D4AF37 !important;
   opacity: 1 !important;
 }
+
+
+
+/* CHANGES */
+
+/* FIX: IKON GARDENS HOMEPAGE BACKGROUND */
+
+.hero,
+:root[data-theme="light"] .hero {
+    background-image: url('assets/images/image-01.jpg') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: #000000 !important;
+    position: relative;
+}
+
+/* Restore dark overlay for text readability */
+
+.hero::before {
+    display: block !important;
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.48) 50%,
+        rgba(0, 0, 0, 0.18) 100%
+    ) !important;
+}
+
+/* Keep text and button above the background */
+
+.hero-in {
+    position: relative !important;
+    z-index: 2 !important;
+    background: transparent !important;
+}
+
+/* Preserve readable homepage text */
+
+.hero h1,
+.hero p {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.hero .hero-welcome,
+.hero h2 {
+    color: #D4AF37 !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
