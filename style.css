@@ -1,1309 +1,186 @@
-
-/* =====================================================
-   IKON GARDENS
-   Main stylesheet
-   Theme: Premium Black & Gold
-   ===================================================== */
-
-
-/* 1. GLOBAL RESET
-   ----------------------------------------------------- */
-
-:root {
-    --bg: #000000;
-    --bg2: #000000;
-    --forest: #000000;
-    --gold: #D4AF37;
-    --gold-deep: #B8860B;
-    --ink: #FFFFFF;
-    --mute: #D6D0C3;
-    --card: #080808;
-    --line: rgba(212, 175, 55, 0.35);
-    --head: #D4AF37;
-}
-
-:root[data-theme="light"] {
-    --bg: #F7F7F5;
-    --bg2: #FAFAF8;
-    --forest: #FFFFFF;
-    --gold: #B8860B;
-    --gold-deep: #8A6500;
-    --ink: #171717;
-    --mute: #444444;
-    --card: #FFFFFF;
-    --line: rgba(184, 134, 11, 0.30);
-    --head: #8A6500;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-    overflow-x: hidden;
-}
-
-body {
-    font-family: 'Manrope', Arial, sans-serif;
-    font-weight: 400;
-    line-height: 1.75;
-    background: var(--bg);
-    color: var(--ink);
-    overflow-x: hidden;
-}
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-a {
-    color: inherit;
-}
-
-button {
-    font: inherit;
-}
-
-h1,
-h2,
-h3 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
-    line-height: 1.1;
-    color: var(--head);
-}
-
-:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 4px;
-}
-
-
-/* 2. NAVIGATION
-   ----------------------------------------------------- */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 30;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-
-    padding: 16px 5vw;
-    padding-top: calc(16px + env(safe-area-inset-top, 0px));
-
-    background: #000000;
-    border-bottom: 1px solid var(--gold);
-
-    transition: padding 0.3s ease,
-                background 0.3s ease;
-}
-
-nav.s {
-    padding-top: calc(8px + env(safe-area-inset-top, 0px));
-    padding-bottom: 8px;
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.brand img {
-    width: auto;
-    height: 46px;
-    object-fit: contain;
-    transition: height 0.3s ease;
-}
-
-nav.s .brand img {
-    height: 38px;
-}
-
-nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(14px, 2vw, 32px);
-    list-style: none;
-}
-
-nav ul a {
-    position: relative;
-    display: inline-block;
-
-    padding: 6px 0;
-
-    color: var(--gold);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.82rem;
-}
-
-nav ul a::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    width: 0;
-    height: 1px;
-
-    background: var(--gold);
-    transition: width 0.3s ease;
-}
-
-nav ul a:hover::after {
-    width: 100%;
-}
-
-
-/* Mobile navigation button */
-
-#tg {
-    display: none;
-    position: relative;
-
-    width: 44px;
-    height: 44px;
-
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-}
-
-#tg i,
-#tg i::before,
-#tg i::after {
-    position: absolute;
-    left: 11px;
-
-    width: 22px;
-    height: 2px;
-
-    background: var(--gold);
-    transition: 0.3s ease;
-}
-
-#tg i {
-    top: 21px;
-}
-
-#tg i::before,
-#tg i::after {
-    content: "";
-    left: 0;
-}
-
-#tg i::before {
-    top: -7px;
-}
-
-#tg i::after {
-    top: 7px;
-}
-
-#tg[aria-expanded="true"] i {
-    background: transparent;
-}
-
-#tg[aria-expanded="true"] i::before {
-    top: 0;
-    transform: rotate(45deg);
-}
-
-#tg[aria-expanded="true"] i::after {
-    top: 0;
-    transform: rotate(-45deg);
-}
-
-
-/* Light / dark theme toggle */
-
-.theme-toggle {
-    display: inline-flex;
-    flex: 0 0 28px;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    min-width: 28px;
-    height: 28px;
-
-    padding: 0;
-    margin: 0;
-
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-
-    color: var(--gold);
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    line-height: 1;
-
-    cursor: pointer;
-}
-
-.theme-toggle:hover,
-.theme-toggle:focus {
-    background: transparent;
-    box-shadow: none;
-}
-
-
-/* 3. HOMEPAGE HERO
-   ----------------------------------------------------- */
-
-.hero {
-    position: relative;
-
-    display: flex;
-    align-items: flex-end;
-
-    width: 100%;
-    height: 100vh;
-    min-height: 560px;
-
-    overflow: hidden;
-
-    background-color: #000000;
-
-    /* CSS file is in the same folder as index.html */
-    background-image: url('assets/images/image-01.jpg');
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    color: #FFFFFF;
-}
-
-/* Dark overlay preserves text readability */
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-
-    background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.76) 0%,
-        rgba(0, 0, 0, 0.48) 48%,
-        rgba(0, 0, 0, 0.16) 100%
-    );
-}
-
-.hero-in {
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-    max-width: 900px;
-
-    padding: 0 6vw 11vh;
-
-    background: transparent;
-}
-
-.hero h1 {
-    margin-bottom: 18px;
-
-    color: #FFFFFF;
-    font-size: clamp(3rem, 8.5vw, 6.6rem);
-    font-weight: 400;
-    letter-spacing: -0.01em;
-}
-
-.hero-welcome {
-    margin-bottom: 8px;
-
-    color: var(--gold);
-    font-size: 1rem;
-}
-
-.hero h2 {
-    margin-bottom: 12px;
-
-    color: var(--gold);
-    font-size: clamp(1.3rem, 2.6vw, 2rem);
-    font-style: italic;
-    font-weight: 400;
-}
-
-.hero p {
-    max-width: 460px;
-    margin-bottom: 34px;
-
-    color: #FFFFFF;
-    font-weight: 300;
-}
-
-.hero .ln {
-    display: block;
-
-    width: 64px;
-    height: 1px;
-    margin-bottom: 26px;
-
-    background: var(--gold);
-}
-
-
-/* Homepage entrance animation */
-
-.hero-in > * {
-    opacity: 0;
-    transform: translateY(22px);
-    animation: heroEntrance 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-}
-
-.hero-in > :nth-child(2) {
-    animation-delay: 0.15s;
-}
-
-.hero-in > :nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-.hero-in > :nth-child(4) {
-    animation-delay: 0.45s;
-}
-
-.hero-in > :nth-child(5) {
-    animation-delay: 0.6s;
-}
-
-@keyframes heroEntrance {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* 4. BUTTONS
-   ----------------------------------------------------- */
-
-.btn {
-    display: inline-block;
-
-    padding: 15px 34px;
-
-    border: 1px solid var(--gold);
-    background: transparent;
-
-    color: var(--gold);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 0.82rem;
-
-    transition: background 0.3s ease,
-                color 0.3s ease;
-}
-
-.btn:hover {
-    background: var(--gold);
-    color: #000000;
-}
-
-.btn.dk {
-    color: var(--head);
-}
-
-.btn.dk:hover {
-    color: #000000;
-}
-
-
-/* 5. GENERAL SECTIONS
-   ----------------------------------------------------- */
-
-section {
-    padding: clamp(80px, 11vw, 150px) 6vw;
-
-    background: var(--bg);
-    color: var(--ink);
-
-    border-top: 1px solid var(--line);
-}
-
-.w {
-    width: 100%;
-    max-width: 1160px;
-    margin: 0 auto;
-}
-
-h2.t {
-    margin-bottom: 28px;
-
-    color: var(--head);
-    font-size: clamp(2.3rem, 5vw, 3.8rem);
-    font-weight: 400;
-}
-
-
-/* Scroll reveal animation */
-
-.rv {
-    opacity: 0;
-    transform: translateY(28px);
-
-    transition: opacity 0.8s ease,
-                transform 0.8s ease;
-}
-
-.rv.in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* 6. ABOUT SECTION
-   ----------------------------------------------------- */
-
-.about .w {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
-    gap: clamp(36px, 7vw, 100px);
-}
-
-.ph {
-    position: relative;
-    overflow: hidden;
-}
-
-.ph img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-
-    transition: transform 0.7s ease;
-}
-
-.ph:hover img {
-    transform: scale(1.04);
-}
-
-.about .ph {
-    aspect-ratio: 4 / 5;
-}
-
-.about .ph::after {
-    content: "";
-    position: absolute;
-    inset: 14px;
-
-    border: 1px solid rgba(246, 241, 231, 0.55);
-    pointer-events: none;
-}
-
-.about p {
-    max-width: 52ch;
-    margin-bottom: 18px;
-
-    color: var(--mute);
-}
-
-.about .sig {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    margin-top: 28px;
-
-    color: var(--head);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.25rem;
-    font-style: italic;
-}
-
-.about .sig svg {
-    flex-shrink: 0;
-
-    width: 34px;
-
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.2;
-}
-
-
-/* 7. SERVICES SECTION
-   ----------------------------------------------------- */
-
-.srv {
-    background: var(--bg2);
-}
-
-.srv h2 {
-    max-width: 14ch;
-}
-
-.sg {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    margin-top: 56px;
-
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-}
-
-.sc {
-    min-width: 0;
-    padding: 42px 34px 46px;
-
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-
-    background: var(--card);
-
-    transition: background 0.3s ease;
-}
-
-.sc:hover {
-    background: var(--bg2);
-}
-
-.ic {
-    display: block;
-
-    width: 36px;
-    height: 36px;
-    margin-bottom: 26px;
-
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.1;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.sc h3 {
-    margin-bottom: 10px;
-
-    color: var(--head);
-    font-size: 1.7rem;
-}
-
-.sc p {
-    color: var(--mute);
-    font-size: 0.94rem;
-}
-
-
-/* 8. VIDEO SECTION
-   ----------------------------------------------------- */
-
-.vid {
-    position: relative;
-
-    display: block;
-    overflow: hidden;
-
-    aspect-ratio: 16 / 9;
-    margin: 50px 0 14px;
-
-    text-decoration: none;
-}
-
-.vid img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: transform 0.7s ease;
-}
-
-.vid:hover img {
-    transform: scale(1.04);
-}
-
-.vid::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-
-    background: rgba(0, 0, 0, 0.35);
-}
-
-.pl {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 84px;
-    height: 84px;
-    margin: -42px 0 0 -42px;
-
-    border: 1px solid #FFFFFF;
-    border-radius: 50%;
-
-    backdrop-filter: blur(4px);
-
-    transition: background 0.3s ease;
-}
-
-.vid:hover .pl {
-    background: var(--gold);
-    border-color: var(--gold);
-}
-
-.pl svg {
-    width: 24px;
-    margin-left: 4px;
-
-    fill: #FFFFFF;
-}
-
-.vc {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-
-    margin-bottom: 60px;
-
-    color: var(--mute);
-    font-size: 0.9rem;
-}
-
-.vc a {
-    color: var(--head);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.4rem;
-    text-decoration: none;
-
-    border-bottom: 1px solid var(--gold);
-}
-
-
-/* 9. GALLERY — UNIFORM IMAGE GRID
-   ----------------------------------------------------- */
-
-.gal {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 16px;
-
-    width: 100%;
-}
-
-.gal .ph,
-.gal .ph:nth-child(n) {
-    position: relative;
-    display: block;
-
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-
-    margin: 0;
-    padding: 0;
-
-    overflow: hidden;
-
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-
-    cursor: zoom-in;
-}
-
-.gal .ph img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-
-    object-fit: cover;
-    object-position: center;
-
-    transition: transform 0.5s ease;
-}
-
-.gal .ph:hover img {
-    transform: scale(1.04);
-}
-
-
-/* Gallery lightbox */
-
-#lb {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 5vw;
-
-    background: rgba(0, 0, 0, 0.94);
-    cursor: zoom-out;
-}
-
-#lb.o {
-    display: flex;
-    animation: lightboxFade 0.3s ease;
-}
-
-#lb img {
-    display: block;
-
-    max-width: 100%;
-    max-height: 100%;
-
-    width: auto;
-    height: auto;
-
-    object-fit: contain;
-}
-
-@keyframes lightboxFade {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-
-/* 10. CONTACT SECTION
-   ----------------------------------------------------- */
-
-.ct .w {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-    gap: clamp(36px, 7vw, 100px);
-}
-
-.ct h3 {
-    margin: 28px 0 6px;
-
-    color: var(--head);
-    font-size: 1.5rem;
-}
-
-.ct h3:first-of-type {
-    margin-top: 0;
-}
-
-.ct address {
-    color: var(--mute);
-    font-style: normal;
-}
-
-.ct a.em {
-    color: var(--head);
-    text-decoration: none;
-    word-break: break-word;
-
-    border-bottom: 1px solid var(--gold);
-}
-
-
-/* WhatsApp contact button */
-
-.wa {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-
-    margin-top: 34px;
-    padding: 14px 28px;
-
-    border: 1px solid var(--gold);
-    background: var(--forest);
-
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 0.9rem;
-
-    transition: background 0.3s ease,
-                color 0.3s ease;
-}
-
-.wa:hover {
-    background: transparent;
-    color: var(--head);
-}
-
-.wa svg {
-    flex-shrink: 0;
-    width: 20px;
-    fill: var(--gold);
-}
-
-.wa small {
-    display: block;
-    color: inherit;
-    opacity: 0.8;
-    font-size: 0.78rem;
-}
-
-
-/* Google Maps information card */
-
-.map {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    min-height: 380px;
-    padding: clamp(34px, 5vw, 56px);
-
-    overflow: hidden;
-
-    background: #000000;
-    border: 1px solid var(--gold);
-    color: #FFFFFF;
-}
-
-.map::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    opacity: 0.12;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0 46px,
-            var(--gold) 46px 47px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0 46px,
-            var(--gold) 46px 47px
-        );
-}
-
-.map > * {
-    position: relative;
-}
-
-.map h3 {
-    margin-bottom: 12px;
-
-    color: #FFFFFF;
-    font-size: 2.2rem;
-}
-
-.map p {
-    max-width: 34ch;
-    color: #FFFFFF;
-    font-weight: 300;
-}
-
-.map svg {
-    width: 30px;
-    margin-bottom: 22px;
-
-    stroke: var(--gold);
-    fill: none;
-    stroke-width: 1.2;
-}
-
-.map .btn {
-    align-self: flex-start;
-    margin-top: 30px;
-}
-
-
-/* 11. FOOTER
-   ----------------------------------------------------- */
-
-footer {
-    padding: 70px 6vw calc(36px + env(safe-area-inset-bottom, 0px));
-
-    border-top: 1px solid var(--gold);
-    background: #000000;
-
-    color: #FFFFFF;
-    text-align: center;
-}
-
-footer img {
-    width: auto;
-    height: 54px;
-    margin: 0 auto 14px;
-
-    object-fit: contain;
-}
-
-footer p.tg {
-    margin-bottom: 30px;
-
-    color: var(--gold);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.3rem;
-    font-style: italic;
-}
-
-footer ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 30px;
-
-    margin-bottom: 34px;
-
-    list-style: none;
-}
-
-footer a {
-    color: var(--gold);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.82rem;
-
-    transition: opacity 0.3s ease;
-}
-
-footer a:hover {
-    opacity: 0.75;
-}
-
-footer small {
-    display: block;
-
-    padding-top: 24px;
-
-    border-top: 1px solid var(--line);
-
-    color: var(--mute);
-    font-size: 0.78rem;
-}
-
-
-/* 12. LIGHT THEME ADJUSTMENTS
-   ----------------------------------------------------- */
-
-:root[data-theme="light"] nav,
-:root[data-theme="light"] nav.s {
-    background: #FFFFFF;
-}
-
-:root[data-theme="light"] .hero {
-    color: #FFFFFF;
-}
-
-:root[data-theme="light"] .hero::before {
-    background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.76) 0%,
-        rgba(0, 0, 0, 0.48) 48%,
-        rgba(0, 0, 0, 0.16) 100%
-    );
-}
-
-:root[data-theme="light"] .hero h1,
-:root[data-theme="light"] .hero p {
-    color: #FFFFFF;
-}
-
-:root[data-theme="light"] .hero h2,
-:root[data-theme="light"] .hero .hero-welcome {
-    color: #E2BD48;
-}
-
-:root[data-theme="light"] .about p,
-:root[data-theme="light"] .sc p,
-:root[data-theme="light"] .ct address,
-:root[data-theme="light"] .vc {
-    color: #333333;
-}
-
-:root[data-theme="light"] .map,
-:root[data-theme="light"] footer {
-    background: #000000;
-    color: #FFFFFF;
-}
-
-:root[data-theme="light"] .map h3,
-:root[data-theme="light"] .map p {
-    color: #FFFFFF;
-}
-
-:root[data-theme="light"] footer p.tg,
-:root[data-theme="light"] footer a,
-:root[data-theme="light"] footer small {
-    color: var(--gold);
-}
-
-:root[data-theme="light"] .wa {
-    color: #FFFFFF;
-}
-
-:root[data-theme="light"] .wa svg {
-    fill: var(--gold);
-}
-
-:root[data-theme="light"] .vc a::before {
-    content: "▶";
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 24px;
-    height: 17px;
-    margin-right: 9px;
-
-    border-radius: 4px;
-    background: #FF0000;
-
-    color: #FFFFFF;
-    font-family: Arial, sans-serif;
-    font-size: 9px;
-}
-
-
-/* 13. TABLET RESPONSIVE LAYOUT
-   ----------------------------------------------------- */
-
-@media (max-width: 960px) {
-    .sg {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .gal {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-
-    .gal .ph,
-    .gal .ph:nth-child(n) {
-        aspect-ratio: 4 / 5;
-        margin: 0;
-    }
-
-    nav ul {
-        gap: 14px;
-    }
-
-    nav ul a {
-        font-size: 0.76rem;
-    }
-
-    .brand img {
-        height: 40px;
-    }
-}
-
-
-/* 14. MOBILE RESPONSIVE LAYOUT
-   ----------------------------------------------------- */
-
-@media (max-width: 760px) {
-    nav {
-        gap: 10px;
-        padding-right: 5vw;
-        padding-left: 5vw;
-    }
-
-    .brand img {
-        height: 36px;
-    }
-
-    #tg {
-        display: block;
-        flex-shrink: 0;
-    }
-
-    nav ul {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: -1;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-
-        height: 100vh;
-        padding: 30px;
-
-        background: #000000;
-
-        opacity: 0;
-        pointer-events: none;
-
-        transition: opacity 0.3s ease;
-    }
-
-    nav ul.o {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    nav ul a {
-        font-size: 1.1rem;
-    }
-
-    .theme-toggle {
-        flex-shrink: 0;
-        margin-left: 0;
-    }
-
-    .about .w,
-    .ct .w {
-        grid-template-columns: 1fr;
-    }
-
-    .sg {
-        grid-template-columns: 1fr;
-    }
-
-    .gal {
-        grid-template-columns: 1fr;
-        gap: 14px;
-    }
-
-    .gal .ph,
-    .gal .ph:nth-child(n) {
-        aspect-ratio: 4 / 5;
-        margin: 0;
-    }
-
-    .hero-in {
-        padding-right: 6vw;
-        padding-bottom: 9vh;
-        padding-left: 6vw;
-    }
-
-    .btn {
-        padding: 15px 28px;
-    }
-
-    .pl {
-        width: 64px;
-        height: 64px;
-        margin: -32px 0 0 -32px;
-    }
-}
-
-
-/* 15. SMALL MOBILE SCREENS
-   ----------------------------------------------------- */
-
-@media (max-width: 480px) {
-    nav {
-        padding-right: 4vw;
-        padding-left: 4vw;
-    }
-
-    .brand img {
-        height: 32px;
-    }
-
-    #tg {
-        width: 38px;
-        height: 38px;
-    }
-
-    #tg i {
-        top: 18px;
-    }
-
-    #tg i,
-    #tg i::before,
-    #tg i::after {
-        left: 8px;
-        width: 22px;
-    }
-
-    .theme-toggle {
-        width: 24px;
-        min-width: 24px;
-        height: 24px;
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 560px;
-        background-position: center center;
-    }
-
-    .hero h1 {
-        font-size: clamp(3rem, 13vw, 4.5rem);
-    }
-
-    .hero p {
-        font-size: 0.95rem;
-    }
-
-    section {
-        padding-right: 5vw;
-        padding-left: 5vw;
-    }
-
-    .sc {
-        padding: 32px 24px;
-    }
-
-    footer {
-        padding-right: 5vw;
-        padding-left: 5vw;
-    }
-}
-
-
-/* 16. ACCESSIBILITY: REDUCED MOTION
-   ----------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-
-    .rv,
-    .hero-in > * {
-        opacity: 1;
-        transform: none;
-    }
+/* =========================================================
+   IKON GARDENS — style.css
+   1. Tokens  2. Base  3. Nav  4. Hero  5. Sections
+   6. Gallery  7. Contact  8. Footer  9. Responsive
+   ========================================================= */
+
+/* 1. TOKENS ------------------------------------------------ */
+:root{
+  --bg:#000; --card:#000; --ink:#fff; --gold:#D4AF37; --head:#D4AF37;
+  --line:rgba(212,175,55,.45); --nav-bg:#000; --map-bg:#000;
+}
+:root[data-theme="light"]{
+  --bg:#F7F7F5; --card:#fff; --ink:#1a1a1a; --gold:#B8860B; --head:#B8860B;
+  --line:rgba(184,134,11,.45); --nav-bg:#fff;
+}
+
+/* 2. BASE -------------------------------------------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;color:var(--head);line-height:1.1}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+section{padding:clamp(80px,11vw,150px) 6vw;border-top:1px solid var(--line);background:var(--bg)}
+.w{max-width:1160px;margin:auto}
+h2.t{font-size:clamp(2.3rem,5vw,3.8rem);font-weight:400;margin-bottom:28px}
+.eyebrow{font-size:.73rem;letter-spacing:.24em;color:var(--gold);font-weight:700;margin-bottom:22px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+.btn{display:inline-block;text-decoration:none;padding:16px 35px;border:1px solid var(--gold);color:var(--gold);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;transition:.4s}
+.btn:hover{background:var(--gold);color:#000}
+.text-link{display:inline-block;margin-top:14px;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:5px}
+
+/* 3. NAV --------------------------------------------------- */
+nav{position:fixed;inset:0 0 auto 0;z-index:30;display:flex;justify-content:space-between;align-items:center;
+  padding:16px 5vw;padding-top:calc(16px + env(safe-area-inset-top,0px));
+  background:var(--nav-bg);border-bottom:1px solid var(--gold);transition:padding .5s}
+nav.s{padding-top:calc(8px + env(safe-area-inset-top,0px));padding-bottom:8px}
+.brand img{height:65px;width:auto;max-width:155px;object-fit:contain;transition:height .5s}
+nav.s .brand img{height:54px}
+nav ul{display:flex;align-items:center;gap:clamp(14px,2.4vw,38px);list-style:none;margin-left:auto}
+nav ul a{color:var(--gold);text-decoration:none;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;position:relative;padding:6px 0}
+nav ul a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .4s}
+nav ul a:hover::after{width:100%}
+.theme-toggle{width:28px;height:28px;margin-left:clamp(10px,2vw,24px);border:0;border-radius:50%;background:transparent;color:var(--gold);font-size:16px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+#tg{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+#tg i,#tg i::before,#tg i::after{position:absolute;left:11px;width:22px;height:1.5px;background:var(--gold);transition:.4s}
+#tg i{top:21px}
+#tg i::before,#tg i::after{content:"";left:0}
+#tg i::before{top:-7px}#tg i::after{top:7px}
+#tg[aria-expanded=true] i{background:transparent}
+#tg[aria-expanded=true] i::before{top:0;transform:rotate(45deg)}
+#tg[aria-expanded=true] i::after{top:0;transform:rotate(-45deg)}
+
+/* 4. HERO — animated GIF background lives in .hero-bg-image */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#000;color:#fff;border-top:0}
+.hero-media{position:absolute;inset:0;z-index:0;background:#000}
+.hero-bg-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.2) 100%)}
+.hero-in{position:relative;z-index:2;max-width:1050px;padding:135px 6vw 75px}
+.hero-brand-logo{width:clamp(270px,48vw,570px);max-height:53vh;height:auto;object-fit:contain;object-position:left center;margin-bottom:16px;filter:drop-shadow(0 3px 12px rgba(0,0,0,.5))}
+.hero-welcome{color:var(--gold);font-size:clamp(.95rem,1.7vw,1.3rem);letter-spacing:.015em;margin-bottom:14px;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+.hero h2{color:#D4AF37;font-size:clamp(1.7rem,3.8vw,3.1rem);font-style:italic;font-weight:400;line-height:1.15;margin-bottom:19px;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+.hero p{color:#fff;font-size:clamp(.95rem,1.65vw,1.2rem);max-width:650px;line-height:1.7;margin-bottom:38px;text-shadow:0 2px 6px rgba(0,0,0,.7)}
+.hero .btn{color:#D4AF37;border-color:#D4AF37}
+.hero .btn:hover{background:#D4AF37;color:#000}
+.hero-in>*{opacity:0;transform:translateY(22px);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-in>:nth-child(3){animation-delay:.15s}.hero-in>:nth-child(4){animation-delay:.3s}
+.hero-in>:nth-child(5){animation-delay:.45s}.hero-in>:nth-child(6){animation-delay:.6s}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* 5. ABOUT / SERVICES / EXTRAS ----------------------------- */
+.about-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,6vw,90px);align-items:center}
+.about-visual{position:relative}
+.about-venue-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line)}
+.visual-tag{position:absolute;bottom:20px;right:-20px;background:var(--gold);color:#000;padding:15px 20px;font-family:'Cormorant Garamond',serif;font-size:1.35rem}
+.about-copy p{margin-bottom:17px;line-height:1.85}
+
+.section-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.section-top p,.gallery-intro,.extras-intro{max-width:670px;opacity:.8}
+.carousel-controls{display:flex;gap:10px;flex-shrink:0}
+.carousel-controls button{width:45px;height:45px;background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:50%;cursor:pointer;font-size:1.35rem}
+.carousel-controls button:hover{background:var(--gold);color:#000}
+.events-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:36px 2px 18px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.event-card{flex:0 0 clamp(240px,29vw,350px);scroll-snap-align:start;border:1px solid var(--line);background:var(--card);overflow:hidden}
+
+/* Service images */
+.event-image{height:300px;background:linear-gradient(140deg,#302715,#0c0c0c);position:relative;overflow:hidden}
+.event-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.event-card:hover .event-image img{transform:scale(1.06)}
+.event-image::after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.65));pointer-events:none}
+.event-image b{position:absolute;z-index:1;left:20px;bottom:16px;font:italic 3rem 'Cormorant Garamond',serif;color:rgba(212,175,55,.85)}
+
+.event-info{padding:24px}
+.event-info h3{font-size:1.8rem;margin-bottom:8px}
+.event-info p{font-size:.9rem;opacity:.8}
+.carousel-hint{text-align:right;color:var(--gold);font-size:.75rem;margin-top:10px}
+
+.extras-intro{margin-bottom:40px}
+.extras-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.extras-grid article{border:1px solid var(--line);background:var(--card);padding:30px;min-height:205px}
+.extras-grid span{color:var(--gold);font-size:.8rem}
+.extras-grid h3{font-size:1.65rem;margin:15px 0 10px}
+.extras-grid p{font-size:.9rem;opacity:.85}
+.service-note{font-size:.75rem;opacity:.7;margin-top:20px}
+
+/* 6. GALLERY ----------------------------------------------- */
+.gallery-film{width:100%;max-width:1000px;margin:38px auto 0;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#000;box-shadow:0 12px 35px rgba(0,0,0,.35)}
+.gallery-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#000}
+.gallery-video-link{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:1000px;margin:0 auto;padding:18px 0 28px;font-size:.95rem}
+.gallery-video-link a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px;font-weight:600}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gallery-tile{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:#111;text-decoration:none}
+.gallery-tile img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.gallery-tile:hover img{transform:scale(1.055)}
+.gallery-tile::after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.7));pointer-events:none}
+.gallery-tile span{position:absolute;z-index:1;bottom:15px;left:17px;right:10px;font-size:.82rem;letter-spacing:.04em;color:#fff;text-shadow:0 1px 4px #000}
+
+/* 7. CONTACT ----------------------------------------------- */
+.ct .w{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,7vw,100px)}
+.ct h3{font-size:1.5rem;margin:28px 0 6px}
+.ct h2+h3{margin-top:0}
+.ct address{font-style:normal}
+.ct a.em{color:var(--head);border-bottom:1px solid var(--gold);text-decoration:none;word-break:break-all}
+.wa{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:14px 28px;background:#000;color:#fff;border:1px solid var(--gold);text-decoration:none;font-size:.9rem;transition:.4s}
+.wa:hover{background:transparent;color:var(--gold)}
+.wa svg{width:20px;fill:var(--gold)}
+.wa small{display:block;opacity:.8;font-size:.78rem}
+.map{background:#000;color:#fff;border:1px solid var(--gold);padding:clamp(34px,5vw,56px);display:flex;flex-direction:column;justify-content:space-between;min-height:380px;position:relative;overflow:hidden}
+.map::before{content:"";position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 46px,#D4AF37 46px 47px),repeating-linear-gradient(90deg,transparent 0 46px,#D4AF37 46px 47px)}
+.map>*{position:relative}
+.map h3{color:#D4AF37;font-size:2.2rem;margin-bottom:12px}
+.map p{color:#fff;max-width:34ch}
+.map svg{width:30px;stroke:#D4AF37;fill:none;stroke-width:1.2;margin-bottom:22px}
+.map .btn{align-self:flex-start;margin-top:30px}
+
+/* 8. FOOTER ------------------------------------------------ */
+footer{background:var(--nav-bg);border-top:1px solid var(--gold);padding:70px 6vw calc(36px + env(safe-area-inset-bottom,0px));text-align:center}
+footer img{width:clamp(190px,27vw,290px);max-height:260px;height:auto;object-fit:contain;margin:0 auto 18px}
+footer .tg{font:italic 1.3rem 'Cormorant Garamond',serif;color:var(--gold);margin-bottom:30px}
+footer ul{list-style:none;display:flex;gap:10px 30px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+footer a{color:var(--gold);text-decoration:none;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+footer a:hover{text-decoration:underline}
+footer small{display:block;border-top:1px solid var(--gold);padding-top:24px;font-size:.78rem;color:var(--gold);opacity:.8}
+
+/* 9. RESPONSIVE -------------------------------------------- */
+@media(max-width:850px){
+  .about-layout{grid-template-columns:1fr}
+  .about-visual{max-width:560px}
+  .about-venue-photo{aspect-ratio:5/4}
+  .extras-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  #tg{display:block;margin-left:auto}
+  .brand img{height:52px;max-width:115px}
+  nav.s .brand img{height:46px}
+  nav ul{position:fixed;inset:0;height:100vh;background:var(--nav-bg);flex-direction:column;justify-content:center;gap:30px;opacity:0;pointer-events:none;transition:opacity .5s;z-index:-1;margin:0}
+  nav ul.o{opacity:1;pointer-events:auto}
+  nav ul a{font-size:1.1rem}
+  .theme-toggle{margin-left:6px}
+  .ct .w{grid-template-columns:1fr}
+  .hero-brand-logo{width:min(82vw,420px);max-height:44vh}
+}
+@media(max-width:600px){
+  .hero-in{padding:120px 6vw 70px}
+  .visual-tag{right:0}
+  .section-top{align-items:flex-start}
+  .event-card{flex-basis:82vw}
+  .event-image{height:265px}
+  .extras-grid{grid-template-columns:1fr}
+  .carousel-controls button{width:38px;height:38px}
+}
+@media(max-width:520px){
+  .gallery-grid{grid-template-columns:1fr;gap:12px}
+  .gallery-tile{aspect-ratio:16/10}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv,.hero-in>*{opacity:1;transform:none}
+  html,.events-carousel{scroll-behavior:auto}
 }
